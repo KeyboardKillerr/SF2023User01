@@ -1,0 +1,10 @@
+﻿<Application x:Class="SF2023User01.WpfApp.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:local="clr-namespace:SF2023User01.WpfApp"
+             StartupUri="Windows/MainWindow.xaml">
+
+    <Application.Resources>
+    </Application.Resources>
+    
+</Application>

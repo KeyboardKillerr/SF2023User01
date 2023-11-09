@@ -1,0 +1,149 @@
+﻿<Page x:Class="SF2023User01.WpfApp.Pages.LoginPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:SF2023User01.WpfApp.Pages"
+      mc:Ignorable="d" 
+      d:DesignHeight="450"
+      d:DesignWidth="800"
+      Title="LoginPage"
+      Background="White">
+
+    <Page.Resources>
+        <BooleanToVisibilityConverter x:Key="booleanToVisibilityConverter"/>
+    </Page.Resources>
+
+    <Grid>
+
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+
+        <Grid
+            Grid.Row="1"
+            Grid.Column="1">
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+
+            <TextBlock
+                FontFamily="Comic Sans MS"
+                Text="Логин"
+                Grid.Column="2"
+                Grid.Row="0"
+                TextAlignment="Center"
+                FontSize="14"/>
+
+            <TextBlock
+                FontFamily="Comic Sans MS"
+                Text="Пароль"
+                Grid.Column="2"
+                Grid.Row="3"
+                TextAlignment="Center"
+                FontSize="14"/>
+
+            <Button
+                FontFamily="Comic Sans MS"
+                Content="{Binding LoginVM.LoginButtonText}"
+                Grid.Column="1"
+                Grid.Row="6" 
+                Grid.ColumnSpan="3"
+                Margin="1"
+                FontSize="11"
+                Command="{Binding LoginVM.LoginCommand, UpdateSourceTrigger=PropertyChanged}"/>
+
+            <Button
+                FontFamily="Comic Sans MS"
+                Content="Войти как гость"
+                Grid.Column="1" Grid.Row="7"
+                Grid.ColumnSpan="3"
+                Margin="1" FontSize="11"
+                Command="{Binding LoginVM.GuestLoginCommand}"/>
+
+            <TextBox
+                FontFamily="Comic Sans MS"
+                HorizontalContentAlignment="Center"
+                VerticalContentAlignment="Center"
+                Grid.Column="0"
+                Grid.Row="1" Grid.ColumnSpan="5"
+                Grid.RowSpan="2" Background="AliceBlue"
+                FontSize="14"
+                Text="{Binding LoginVM.Login}"/>
+
+            <PasswordBox
+                x:Name="PassBox"
+                HorizontalContentAlignment="Center"
+                VerticalContentAlignment="Center"
+                Grid.Column="0"
+                Grid.Row="4"
+                Grid.ColumnSpan="5"
+                Grid.RowSpan="2"
+                Background="AliceBlue"
+                FontSize="14"
+                PasswordChanged="PassBox_PasswordChanged"/>
+
+        </Grid>
+
+        <StackPanel
+            Visibility="{Binding LoginVM.CaptchaIsVisible,
+            Converter={StaticResource booleanToVisibilityConverter}}"
+            Orientation="Vertical" 
+            Grid.Column="2"
+            Grid.Row="1">
+
+            <TextBlock
+                FontFamily="Comic Sans MS"
+                Text="Капча"
+                FontSize="14"
+                TextAlignment="Center"/>
+
+            <TextBox
+                FontFamily="Comic Sans MS"
+                HorizontalContentAlignment="Center"
+                VerticalContentAlignment="Center"
+                x:Name="CaptchaInput" 
+                Width="104" 
+                Height="32"
+                Text="{Binding LoginVM.EnteredCaptcha}"/>
+
+            <Image 
+                x:Name="CaptchaImage" 
+                Width="83"  
+                Height="75"/>
+
+            <Grid>
+
+                <Button
+                    FontFamily="Comic Sans MS"
+                    Content="Обновить"
+                    Margin="5"
+                    Width="100"
+                    FontSize="11"
+                    Command="{Binding LoginVM.UpdateCaptchaCommand}"/>
+
+            </Grid>
+        </StackPanel>
+    </Grid>
+</Page>
